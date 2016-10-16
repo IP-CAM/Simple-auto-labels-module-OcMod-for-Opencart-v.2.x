@@ -50,6 +50,21 @@
 			]]>
 			</add>
 		</operation>
+		<operation>
+			<search><![CDATA[<div class="image">]]></search>
+			<add position="after"><![CDATA[
+		<?php if( $product['is_new'] < 14) {   ?>            
+        <span class="product-label new">
+            <?php echo $text_lable_new; ?>
+        </span>                                             
+        <?php } ?>  
+        <?php if( $product['special'] )  { ?>          
+            <span class="product-label sale"><?php echo $text_lable_sale; ?>
+            </span>
+        <?php } ?>
+			]]>
+			</add>
+		</operation>
 	</file>
 	<file path="catalog/controller/product/category.php">
 		<operation>
