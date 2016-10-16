@@ -27,6 +27,13 @@
 			</add>
 		</operation>
 		<operation>
+			<search><![CDATA['rating'      => $rating,]]></search>
+			<add position="after"><![CDATA[
+				'is_new'      => date_diff(new DateTime(date("Y-m-d H:i:s")), new DateTime(date($result['date_added'])))->days,
+			]]>
+			</add>
+		</operation>
+		<operation>
 			<search><![CDATA[$data['tags'] = array();]]></search>
 			<add position="before"><![CDATA[
 				$data['is_new'] = date_diff(new DateTime(date("Y-m-d H:i:s")), new DateTime(date($product_info['date_added'])))->days;
