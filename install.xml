@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <modification>
-	<name>Opencart2 autoLables (Sale and NEW)</name>
-	<code>Opencart2 autoLables</code>
-	<version>1.00</version>
+	<name>Opencart2 Auto Labels (Sale and NEW)</name>
+	<code>Opencart2 Auto Labels</code>
+	<version>1.01</version>
 	<author>sergeomikh@gmail.com</author>
 	<file path="catalog/view/theme/*/template/common/header.tpl">
         <operation>
@@ -12,7 +12,7 @@
 				]]>
 			</search>
             <add position="before"><![CDATA[
-				<link href="catalog/view/theme/default/stylesheet/lables.css" rel="stylesheet">
+				<link href="catalog/view/theme/default/stylesheet/labels.css" rel="stylesheet">
             ]]></add>
         </operation>
     </file>
@@ -20,9 +20,16 @@
 		<operation>
 			<search><![CDATA[$this->load->model('catalog/review');]]></search>
 			<add position="before"><![CDATA[
-				$this->load->language('module/lables');
-				$data['text_lable_new'] = $this->language->get('text_lable_new');
-				$data['text_lable_sale'] = $this->language->get('text_lable_sale');
+				$this->load->language('module/labels');
+				$data['text_label_new'] = $this->language->get('text_label_new');
+				$data['text_label_sale'] = $this->language->get('text_label_sale');
+			]]>
+			</add>
+		</operation>
+		<operation>
+			<search><![CDATA['rating'      => $rating,]]></search>
+			<add position="after"><![CDATA[
+				'is_new'      => date_diff(new DateTime(date("Y-m-d H:i:s")), new DateTime(date($result['date_added'])))->days,
 			]]>
 			</add>
 		</operation>
@@ -47,11 +54,26 @@
 			<add position="after"><![CDATA[
 		<?php if( $is_new < 14) {   ?>            
         <span class="product-label new">
-            <?php echo $text_lable_new; ?>
+            <?php echo $text_label_new; ?>
         </span>                                             
         <?php } ?>  
         <?php if( $special )  { ?>          
-            <span class="product-label sale"><?php echo $text_lable_sale; ?>
+            <span class="product-label sale"><?php echo $text_label_sale; ?>
+            </span>
+        <?php } ?>
+			]]>
+			</add>
+		</operation>
+		<operation>
+			<search><![CDATA[<div class="image">]]></search>
+			<add position="after"><![CDATA[
+		<?php if( $product['is_new'] < 14) {   ?>            
+        <span class="product-label new">
+            <?php echo $text_label_new; ?>
+        </span>                                             
+        <?php } ?>  
+        <?php if( $product['special'] )  { ?>          
+            <span class="product-label sale"><?php echo $text_label_sale; ?>
             </span>
         <?php } ?>
 			]]>
@@ -77,9 +99,9 @@
 		<operation>
 			<search><![CDATA[$data['text_refine'] = $this->language->get('text_refine');]]></search>
 			<add position="before"><![CDATA[
-				$this->load->language('module/lables');
-				$data['text_lable_new'] = $this->language->get('text_lable_new');
-				$data['text_lable_sale'] = $this->language->get('text_lable_sale');
+				$this->load->language('module/labels');
+				$data['text_label_new'] = $this->language->get('text_label_new');
+				$data['text_label_sale'] = $this->language->get('text_label_sale');
 			]]>
 			</add>
 		</operation>
@@ -97,11 +119,11 @@
 			<add position="after"><![CDATA[
 		<?php if( $product['is_new'] < 14) {   ?>            
         <span class="product-label new">
-            <?php echo $text_lable_new; ?>
+            <?php echo $text_label_new; ?>
         </span>                                             
         <?php } ?>  
         <?php if( $product['special'] )  { ?>          
-            <span class="product-label sale"><?php echo $text_lable_sale; ?>
+            <span class="product-label sale"><?php echo $text_label_sale; ?>
             </span>
         <?php } ?>
 			]]>
@@ -112,9 +134,9 @@
 		<operation>
 			<search><![CDATA[$data['compare'] = $this->url->link('product/compare');]]></search>
 			<add position="before"><![CDATA[
-				$this->load->language('module/lables');
-				$data['text_lable_new'] = $this->language->get('text_lable_new');
-				$data['text_lable_sale'] = $this->language->get('text_lable_sale');
+				$this->load->language('module/labels');
+				$data['text_label_new'] = $this->language->get('text_label_new');
+				$data['text_label_sale'] = $this->language->get('text_label_sale');
 			]]>
 			</add>
 		</operation>
@@ -132,11 +154,11 @@
 			<add position="after"><![CDATA[
 		<?php if( $product['is_new'] < 14) {   ?>            
         <span class="product-label new">
-            <?php echo $text_lable_new; ?>
+            <?php echo $text_label_new; ?>
         </span>                                             
         <?php } ?>  
         <?php if( $product['special'] )  { ?>          
-            <span class="product-label sale"><?php echo $text_lable_sale; ?>
+            <span class="product-label sale"><?php echo $text_label_sale; ?>
             </span>
         <?php } ?>
 			]]>
@@ -147,9 +169,9 @@
 		<operation>
 			<search><![CDATA[$data['compare'] = $this->url->link('product/compare');]]></search>
 			<add position="before"><![CDATA[
-				$this->load->language('module/lables');
-				$data['text_lable_new'] = $this->language->get('text_lable_new');
-				$data['text_lable_sale'] = $this->language->get('text_lable_sale');
+				$this->load->language('module/labels');
+				$data['text_label_new'] = $this->language->get('text_label_new');
+				$data['text_label_sale'] = $this->language->get('text_label_sale');
 			]]>
 			</add>
 		</operation>
@@ -167,11 +189,11 @@
 			<add position="after"><![CDATA[
 		<?php if( $product['is_new'] < 14) {   ?>            
         <span class="product-label new">
-            <?php echo $text_lable_new; ?>
+            <?php echo $text_label_new; ?>
         </span>                                             
         <?php } ?>  
         <?php if( $product['special'] )  { ?>          
-            <span class="product-label sale"><?php echo $text_lable_sale; ?>
+            <span class="product-label sale"><?php echo $text_label_sale; ?>
             </span>
         <?php } ?>
 			]]>
@@ -182,9 +204,9 @@
 		<operation>
 			<search><![CDATA[$data['compare'] = $this->url->link('product/compare');]]></search>
 			<add position="before"><![CDATA[
-				$this->load->language('module/lables');
-				$data['text_lable_new'] = $this->language->get('text_lable_new');
-				$data['text_lable_sale'] = $this->language->get('text_lable_sale');
+				$this->load->language('module/labels');
+				$data['text_label_new'] = $this->language->get('text_label_new');
+				$data['text_label_sale'] = $this->language->get('text_label_sale');
 			]]>
 			</add>
 		</operation>
@@ -202,11 +224,11 @@
 			<add position="after"><![CDATA[
 		<?php if( $product['is_new'] < 14) {   ?>            
         <span class="product-label new">
-            <?php echo $text_lable_new; ?>
+            <?php echo $text_label_new; ?>
         </span>                                             
         <?php } ?>  
         <?php if( $product['special'] )  { ?>          
-            <span class="product-label sale"><?php echo $text_lable_sale; ?>
+            <span class="product-label sale"><?php echo $text_label_sale; ?>
             </span>
         <?php } ?>
 			]]>
@@ -217,9 +239,9 @@
 		<operation>
 			<search><![CDATA[$data['button_cart'] = $this->language->get('button_cart');]]></search>
 			<add position="before"><![CDATA[
-				$this->load->language('module/lables');
-				$data['text_lable_new'] = $this->language->get('text_lable_new');
-				$data['text_lable_sale'] = $this->language->get('text_lable_sale');
+				$this->load->language('module/labels');
+				$data['text_label_new'] = $this->language->get('text_label_new');
+				$data['text_label_sale'] = $this->language->get('text_label_sale');
 			]]>
 			</add>
 		</operation>
@@ -237,11 +259,11 @@
 			<add position="after"><![CDATA[
 		<?php if( $product['is_new'] < 14) {   ?>            
         <span class="product-label new">
-            <?php echo $text_lable_new; ?>
+            <?php echo $text_label_new; ?>
         </span>                                             
         <?php } ?>  
         <?php if( $product['special'] )  { ?>          
-            <span class="product-label sale"><?php echo $text_lable_sale; ?>
+            <span class="product-label sale"><?php echo $text_label_sale; ?>
             </span>
         <?php } ?>
 			]]>
@@ -249,4 +271,3 @@
 		</operation>
 	</file>
 </modification>
-	
