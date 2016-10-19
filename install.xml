@@ -2,7 +2,7 @@
 <modification>
 	<name>Opencart2 Auto Labels (Sale and NEW)</name>
 	<code>Opencart2 Auto Labels</code>
-	<version>1.01</version>
+	<version>1.10</version>
 	<author>sergeomikh@gmail.com</author>
 	<file path="catalog/view/theme/*/template/common/header.tpl">
         <operation>
